@@ -1,1 +1,47 @@
-r
+import capos.*
+
+describe "rolando" {
+
+    test "Encontrar" {
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.encontrar(collar)
+
+        assert.equals(#{espada,libro}, rolando.mochila())
+    }
+
+    test "Hogar" {
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.irAHogar()
+        rolando.encontrar(collar)
+        rolando.irAHogar()
+
+        assert.equals(#{}, rolando.mochila())
+        assert.equals(#{espada,libro,collar}, castillo.cofre() )
+    }
+
+    test "Posesiones" {
+        castillo.cofre(#{collar, espada})
+        rolando.mochila(#{armadura})
+
+        assert.equals(#{collar, espada, armadura}, rolando.posesiones())
+        assert.notThat((rolando.posee(libro)))
+    }
+
+      test "Historial"  {
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.encontrar(collar)
+        rolando.irAHogar()
+        rolando.encontrar(armadura) 
+        rolando.encontrar(collar)
+
+        assert.equals([espada, libro, collar, armadura, collar], rolando.historial())
+
+        assert.equals( armadura , rolando.artefactoEnHistorial(3)) 
+
+
+    }
+
+}
